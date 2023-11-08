@@ -1,0 +1,52 @@
+.body{
+
+  margin: 20px;
+
+}
+
+.block_historique_transfert{
+border: 1px solid
+}
+table {
+        font-family: Arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #8CC559;
+    }
+.table_ligne{
+          background-color: #E5E5E5;
+}
+.header_block_transaction {
+display: flex;
+align-items: center; // Alignement vertical des éléments
+justify-content: center; // Alignement horizontal des éléments
+
+p {
+    margin: 0 10px 0 0; // Ajouter un espacement entre les éléments
+}
+}
+.header_block_transaction p {
+  margin-right: auto; /* Déplacer vers la gauche autant que possible */
+  padding: 10px;
+}
+
+.header_block_transaction button {
+  margin-left: auto; /* Déplacer vers la droite autant que possible */
+}
+.block_transaction{
+
+background-color: #E5E5E5;
+padding: 25px;
+ display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

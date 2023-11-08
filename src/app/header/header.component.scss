@@ -1,0 +1,39 @@
+header{
+  display: flex;
+  justify-content: space-between;
+  margin: 20px;
+  }
+
+  h1{
+    color:white;
+    background-color: #8CC559;
+    border-radius: 4px;
+    font-size: 17px;
+    padding: 10px;
+  }
+
+  ul {
+    list-style-type: none;
+    text-decoration: none;
+  }
+
+  a {
+    color: #000000;
+    text-decoration: none;
+  margin: 15px;
+  }
+
+  .horizontal-list {
+    list-style-type: none; /* Supprime les puces */
+    padding: 0; /* Supprime les marges internes */
+  }
+
+  .horizontal-list li {
+    display: inline; /* Affiche les éléments de la liste en ligne */
+    margin-right: 20px; /* Ajoute un espacement entre les éléments de la liste si nécessaire */
+  }
+
+  .horizontal-list li:last-child {
+    margin-right: 0; /* Supprime l'espacement à droite pour le dernier élément de la liste */
+  }
+
