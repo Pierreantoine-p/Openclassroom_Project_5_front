@@ -6,10 +6,10 @@
 	<div class="block_transaction">
     			<select id="menu">
         			<option value="">Select A Connection</option>
-        			<option value="option2">Option 2</option>
-        			<option value="option3">Option 3</option>
-        			<option value="option4">Option 4</option>
+        			<!--<option *ngFor="let element of relations" [value]="element.userId">{{userNamesMap[element.userRelationId]}}</option> -->
+        			<option *ngFor="let element of relations" [value]="element.userId">{{element.userRelationId}}</option>
    		 	</select>
+          <input type ="number"/>
 			<button>Play</button>
 	</div>
 
@@ -27,21 +27,12 @@
         </thead>
 
         <tbody>
-            <tr>
-                <td>Donnée 1</td>
-                <td>Donnée 2</td>
-                <td>Donnée 3</td>
-            </tr>
-            <tr>
-                <td>Donnée 4</td>
-                <td>Donnée 5</td>
-                <td>Donnée 6</td>
-            </tr>
-            <tr>
-                <td>Donnée 7</td>
-                <td>Donnée 8</td>
-                <td>Donnée 9</td>
+            <tr *ngFor="let element of transactions">
+              <td>{{userNamesMap[element.userIdTransaction]}}</td>
+                <td>{{element.transactionDescription}}</td>
+                <td>{{element.transactionSum}}</td>
             </tr>
         </tbody>
     </table>
+</div>
 </div>

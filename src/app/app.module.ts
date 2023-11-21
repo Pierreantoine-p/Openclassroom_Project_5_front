@@ -2,17 +2,21 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { LoginFormComponent } from './page/login-page/login-form.component';
+import { LoginFormComponent } from './pages/login-page/login-form.component';
 import { AppRoutingModule } from './app-routing.modules';
-import { HeaderComponent } from './header/header.component';
-import { ProfilPageComponent } from './page/profil-page/profil-page.component';
-import { TransfertPageComponent } from './page/transfert-page/transfert-page.component';
-import { ContactPageComponent } from './contact-page/contact-page.component';
-import { LandingPageComponent } from './page/landing-page/landing-page.component';
-import { ProfilComponent } from './profil/profil.component';
-import { TransfertComponent } from './transfert/transfert.component';
-import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
+import { HeaderComponent } from './components/header/header.component';
+import { ProfilPageComponent } from './pages/profil-page/profil-page.component';
+import { TransfertPageComponent } from './pages/transfert-page/transfert-page.component';
+import { ContactPageComponent } from './pages/contact-page/contact-page.component';
+import { ProfilComponent } from './components/profil/profil.component';
+import { TransactionComponent } from './components/transaction/transaction.component';
+import { LoginComponent } from './components/login/login.component';
+import { HomeComponent } from './components/home/home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { LogOutComponent } from './components/log-out/log-out.component';
+import { AuthGardComponent } from './components/auth-gard/auth-gard.component';
+import { HomePageComponent } from './pages/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -22,15 +26,20 @@ import { HomeComponent } from './home/home.component';
     ProfilPageComponent,
     TransfertPageComponent,
     ContactPageComponent,
-    LandingPageComponent,
+    HomePageComponent,
     ProfilComponent,
-    TransfertComponent,
+    TransactionComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    LogOutComponent,
+    AuthGardComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
