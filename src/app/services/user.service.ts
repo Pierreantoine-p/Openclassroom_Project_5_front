@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { User } from "../models/user.model";
+import { UserRelation } from "../models/add.relation.model";
 
 @Injectable({
   providedIn: 'root'
@@ -25,4 +26,6 @@ getUSerById(userId: number | null): Observable<User>{
 
     return this.http.get<User>(`${this.url}user/id/${credentials.userId}`);
 }
+
+
 }

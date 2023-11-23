@@ -12,7 +12,7 @@ const routes : Routes = [
 {path: '', redirectTo: 'login', pathMatch: 'full' },
 {path: 'profil', component: ProfilPageComponent},
 {path: 'transfert', component: TransfertPageComponent},
-{path: 'contact', component: ContactPageComponent}
+//{path: 'contact', component: ContactPageComponent}
 ];
 
 @NgModule({

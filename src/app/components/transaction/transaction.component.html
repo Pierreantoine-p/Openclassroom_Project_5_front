@@ -1,13 +1,20 @@
 <div class="body">
 	<div class="header_block_transaction">
 		<p>Send Money</p>
-		<button>Add Connection</button>
+<form #loginform="ngForm" (ngSubmit)="onAddRelation(loginform)">
+  <input type="userMail" id="emailInput"[(ngModel)]="userMail" name="userMail" placeholder="Email" required>
+  <button type="submit">Add Connection</button>
+</form>
+    <!--<div *ngIf="modalOpened">
+      <input type="text" [(ngModel)]="userInput">
+      <button (click)="submitText()">Valider</button>
+      <div *ngIf="submittedText">Vous avez saisi : {{ submittedText }}</div>
+    </div> -->
 	</div>
 	<div class="block_transaction">
     			<select id="menu">
         			<option value="">Select A Connection</option>
-        			<!--<option *ngFor="let element of relations" [value]="element.userId">{{userNamesMap[element.userRelationId]}}</option> -->
-        			<option *ngFor="let element of relations" [value]="element.userId">{{element.userRelationId}}</option>
+        			<option *ngFor="let element of relations" [value]="element.userId">{{relationNamesMap[element.userFkIdRelation]}}</option>
    		 	</select>
           <input type ="number"/>
 			<button>Play</button>

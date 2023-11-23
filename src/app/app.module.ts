@@ -17,6 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { LogOutComponent } from './components/log-out/log-out.component';
 import { AuthGardComponent } from './components/auth-gard/auth-gard.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -33,13 +35,15 @@ import { HomePageComponent } from './pages/home-page/home-page.component';
     HomeComponent,
     LogOutComponent,
     AuthGardComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]

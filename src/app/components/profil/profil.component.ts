@@ -20,13 +20,11 @@ export class ProfilComponent implements OnInit {
 
   ngOnInit(): void {
   this.userId = this.authService.userId;
-  console.log("hello +" + this.userId )
 
 
   this.userService.getUSerById(this.userId).subscribe(
     (userData : User) => {
     this.user = userData;
-    console.log(" this.user + " +  this.user)
     },
     (error) => {
       console.error(error); // Gérez les erreurs de requête

@@ -7,6 +7,9 @@ import { AuthService } from 'src/app/services/auth.service';
 import { RelationService } from 'src/app/services/relation.service';
 import { TransactionService } from 'src/app/services/transaction.service';
 import { UserService } from 'src/app/services/user.service';
+import { MatDialog } from '@angular/material/dialog';
+import { NgForm } from '@angular/forms';
+import { UserRelation } from 'src/app/models/add.relation.model';
 
 @Component({
   selector: 'app-transfert',
@@ -21,66 +24,24 @@ import { UserService } from 'src/app/services/user.service';
     userNamesMap: { [key: number]: string } = {};
     relationNamesMap: { [key: number]: string } = {};
     users!: User[];
-    relations! : Relation[]
+    relations! : Relation[];
+    modalOpened: boolean = false;
+    userInput: string = '';
+    submittedText: string = '';
+    userMail! : string;
+    userRelation!: UserRelation
 
     constructor(private authService : AuthService,
        private transactionService: TransactionService,
         private userService : UserService,
-        private relationService : RelationService) {
-    }
+        private relationService : RelationService,
+        public dialog: MatDialog) {}
 
-    ngOnInit(): void {
-      this.userId = this.authService.userId;
 
-      if (this.userId !== null) {
-        const transactionRequest = this.transactionService.getAllTransactionById(this.userId);
-        const relationRequest = this.relationService.getAllRelationById(this.userId);
-
-        forkJoin({
-          transactions: transactionRequest,
-          relations: relationRequest
-        }).subscribe({
-          next: ({ transactions, relations }) => {
-            this.transactions = transactions;
-            this.relations = relations;
-
-            const userTransactionRequests = this.transactions.map((transaction) =>
-              this.userService.getUSerById(transaction.userIdTransaction)
-            );
-
-            const userRelationRequests = this.relations.map((relation) =>
-              this.userService.getUSerById(relation.userRelationId)
-            );
-
-            forkJoin([...userTransactionRequests, ...userRelationRequests]).subscribe({
-              next: (users: User[]) => {
-                const transactionUsers = users.slice(0, this.transactions.length);
-                const relationUsers = users.slice(this.transactions.length);
-
-                transactionUsers.forEach((user, index) => {
-                  this.userNamesMap[this.transactions[index].userIdTransaction] = user.userName;
-                });
-
-                relationUsers.forEach((user, index) => {
-                  this.relationNamesMap[this.relations[index].userRelationId] = user.userName;
-                });
-              },
-              error: (error) => {
-                console.error("Erreur lors de la récupération des utilisateurs:", error);
-              },
-            });
-          },
-          error: (error: any) => {
-            console.error(`Erreur lors de la récupération des transactions et relations : ${error}`);
-          },
-        });
-      }
-    }
-  }
-  /*
       ngOnInit(): void {
     this.onHistoriqueTransaction();
     this.onListRelation();
+    this.userRelation = new UserRelation;
     }
 
     onHistoriqueTransaction(){
@@ -111,32 +72,89 @@ import { UserService } from 'src/app/services/user.service';
     }
 
     onListRelation() {
-      this.userId = this.authService.userId
-      if(this.userId !== null){
+      this.userId = this.authService.userId;
+      if (this.userId !== null) {
         this.relationService.getAllRelationById(this.userId).subscribe({
-          next : (relations : Relation[]) => {
-            console.log("relations" + relations)
-          this.relations = relations;
-          const userRequests =  this.relations.map((relation) =>
-         this.userService.getUSerById(relation.userRelationId)
-          );
-          forkJoin(userRequests).subscribe({
-            next: (users: User[]) => {
-              console.log("users : " , users)
+          next: (relations: Relation[]) => {
+            console.log("Relations récupérées :", relations);
 
-            users.forEach((user, index) => {
-              this.relationNamesMap[this.relations[index].userRelationId] = user.userName;
-            })
+            if (relations && relations.length > 0) {
+              this.relations = relations;
+
+              const userRequests = this.relations.map((relation) =>
+                this.userService.getUSerById(relation.userFkIdRelation)
+              );
+
+              forkJoin(userRequests).subscribe({
+                next: (users: User[]) => {
+                  console.log("users : ", users);
+
+                  users.forEach((user, index) => {
+                    this.relationNamesMap[this.relations[index].userFkIdRelation] = user.userName;
+                  });
+                },
+                error: Error => {
+                  console.log(`error : ${Error}`);
+                },
+              });
+            }
           },
           error: Error => {
-            console.log(`error : ${Error}`)
+            console.log(`error getAllRelationById : ${Error}`);
           },
         });
-          } ,
-              error: Error => {
-                console.log(`error getAllRelationById : ${Error}`)
-              },
-        })
+      }
     }
-    }
-    */
+
+    onAddRelation(form : NgForm){
+
+      this.userId = this.authService.userId;
+
+      if (this.userId !== null) {
+        console.log(form.value)
+        if(form.valid){
+          const {userMail} = form.value;
+          this.userMail = userMail;
+          this.userService.getUSerByMail(this.userMail).subscribe({
+          next: (user : User) =>{
+          this.userRelation.userFkIdOwnerRelation = this.userId
+          this.userRelation.user.userId = user.userId
+          this.relationService.createRelation(this.userRelation).subscribe({
+            next: (userRelation: UserRelation) => {
+              console.log("userRelation " + this.userRelation)
+            },
+            error: error => {
+              console.log(`error : ${error}`)
+
+                   },
+          })
+          },
+          error: error => {
+            console.log(`error : ${error}`)
+
+       },
+          })
+        }
+      }
+  }
+
+  onAddTransfert(form : NgForm){
+
+    this.userId = this.authService.userId;
+
+      if (this.userId !== null) {
+  }
+
+}
+  }
+
+
+
+
+      /*
+mon id
+mail de la personne
+getUserByMail
+recupére l'id
+post relation userId+ id relation
+*/
