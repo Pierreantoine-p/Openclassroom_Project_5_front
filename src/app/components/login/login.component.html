@@ -2,16 +2,29 @@
   <div class="title">
     <p>Pay My Buddy</p>
   </div>
-  <form #loginform="ngForm" (ngSubmit)="onLoginForm(loginform)">
-          <label for="emailInput"></label>
-          <input type="userMail" id="emailInput"[(ngModel)]="login.userMail" name="userMail" placeholder="Email" required>
+  <form #loginform="ngForm"
+    (ngSubmit)="onLoginForm(loginform)">
+    <label for="emailInput"></label>
+    <input type="userMail"
+      id="emailInput"
+      [(ngModel)]="login.userMail"
+      name="userMail"
+      placeholder="Email"
+      required>
 
-          <label for="passwordInput"></label>
-          <input type="password" id="passwordInput" [(ngModel)]="login.userPassword" name="userPassword" placeholder="Password" required>
-          <label>
-              <input type="checkbox" name="remember_me" value="true"> Se rappeler de moi
-          </label>
+    <label for="passwordInput"></label>
+    <input type="password"
+      id="passwordInput"
+      [(ngModel)]="login.userPassword"
+      name="userPassword"
+      placeholder="Password"
+      required>
+    <label>
+      <input type="checkbox"
+        name="remember_me"
+        value="true"> Se rappeler de moi
+    </label>
 
-          <button type="submit">Login</button>
+    <button type="submit">Login</button>
   </form>
 </div>

@@ -8,12 +8,12 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./log-out.component.scss']
 })
 export class LogOutComponent {
-  constructor(private authService : AuthService,
-    private router : Router
-    ){}
+  constructor(private authService: AuthService,
+    private router: Router
+  ) { }
 
-    onLogoutClick(): void {
-      this.authService.logout();
-      this.router.navigate(['/login']);
+  onLogoutClick(): void {
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 }

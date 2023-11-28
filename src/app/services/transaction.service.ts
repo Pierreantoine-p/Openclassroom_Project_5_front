@@ -11,11 +11,11 @@ export class TransactionService {
 
   private url = 'http://localhost:8080/'
 
-  constructor(private http :HttpClient){}
+  constructor(private http: HttpClient) { }
 
-  getAllTransactionById(userId : number) : Observable<Transactions []>{
-    const credentials = {userId}
-  return this.http.get<Transactions []>(`${this.url}transaction/${credentials.userId}`)
+  getAllTransactionById(userId: number): Observable<Transactions[]> {
+    const credentials = { userId }
+    return this.http.get<Transactions[]>(`${this.url}transaction/${credentials.userId}`)
   }
 
 }

@@ -1,45 +1,56 @@
 <div class="body">
-	<div class="header_block_transaction">
-		<p>Send Money</p>
-<form #loginform="ngForm" (ngSubmit)="onAddRelation(loginform)">
-  <input type="userMail" id="emailInput"[(ngModel)]="userMail" name="userMail" placeholder="Email" required>
-  <button type="submit">Add Connection</button>
-</form>
-    <!--<div *ngIf="modalOpened">
-      <input type="text" [(ngModel)]="userInput">
-      <button (click)="submitText()">Valider</button>
-      <div *ngIf="submittedText">Vous avez saisi : {{ submittedText }}</div>
-    </div> -->
-	</div>
-	<div class="block_transaction">
-    			<select id="menu">
-        			<option value="">Select A Connection</option>
-        			<option *ngFor="let element of relations" [value]="element.userId">{{relationNamesMap[element.userFkIdRelation]}}</option>
-   		 	</select>
-          <input type ="number"/>
-			<button>Play</button>
-	</div>
+  <div class="header_block_transaction">
+    <p>Send Money</p>
+    <form #loginform="ngForm"
+      (ngSubmit)="onAddRelation(loginform)">
+      <input type="userMail"
+        id="emailInput"
+        [(ngModel)]="userMail"
+        name="userMail"
+        placeholder="Email"
+        required>
+      <button type="submit">Add Connection</button>
+    </form>
+  </div>
+  <div class="block_transaction">
 
-<p>My Transactions</p>
 
-<div class="block_historique_transfert">
-<table>
+      <select name="userIdTransfert"
+        [(ngModel)]="userIdTransfert">
+        <option value="">Select A Connection</option>
+        <option *ngFor="let element of relations"
+          [ngValue]="element.userFkIdRelation">{{relationNamesMap[element.userFkIdRelation]}}</option>
+      </select>
 
-        <thead>
-            <tr>
-                <th>Connection</th>
-                <th>Description</th>
-                <th>Amount</th>
-            </tr>
-        </thead>
+      <input type="number"
+        name="amount"
+        [(ngModel)]="amount" />
+      <button (click)="onAddTransfert()" >Play</button>
 
-        <tbody>
-            <tr *ngFor="let element of transactions">
-              <td>{{userNamesMap[element.userIdTransaction]}}</td>
-                <td>{{element.transactionDescription}}</td>
-                <td>{{element.transactionSum}}</td>
-            </tr>
-        </tbody>
+
+  </div>
+
+  <p>My Transactions</p>
+
+  <div class="block_historique_transfert">
+    <table>
+
+      <thead>
+        <tr>
+          <th>Connection</th>
+          <th>Description</th>
+          <th>Amount</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let element of transactions">
+          <td>{{userNamesMap[element.userIdTransaction]}}</td>
+          <td>{{element.transactionDescription}}</td>
+          <td>{{element.transactionSum}}</td>
+        </tr>
+      </tbody>
     </table>
+  </div>
 </div>
-</div>
+<!-- [(ngModel)]="userIdRelation"-->

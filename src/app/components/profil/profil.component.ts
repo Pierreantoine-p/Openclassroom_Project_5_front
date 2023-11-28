@@ -13,23 +13,23 @@ export class ProfilComponent implements OnInit {
   user: User | undefined;
   userId!: number | null;
 
-  userMail! : string ;
+  userMail!: string;
 
-  constructor(private authService : AuthService,
-    private userService : UserService) {}
+  constructor(private authService: AuthService,
+    private userService: UserService) { }
 
   ngOnInit(): void {
-  this.userId = this.authService.userId;
+    this.userId = this.authService.userId;
 
 
-  this.userService.getUSerById(this.userId).subscribe(
-    (userData : User) => {
-    this.user = userData;
-    },
-    (error) => {
-      console.error(error); // Gérez les erreurs de requête
-    }
-  )
+    this.userService.getUSerById(this.userId).subscribe(
+      (userData: User) => {
+        this.user = userData;
+      },
+      (error) => {
+        console.error(error); // Gérez les erreurs de requête
+      }
+    )
 
-}
+  }
 }

@@ -12,15 +12,15 @@ export class AuthService {
 
   private url = 'http://localhost:8080/'
 
-  constructor(private http :HttpClient){}
+  constructor(private http: HttpClient) { }
 
-  login(userMail : string, userPassword : string): Observable<Login>{
-    const credentials = {userMail, userPassword}
+  login(userMail: string, userPassword: string): Observable<Login> {
+    const credentials = { userMail, userPassword }
     return this.http.get<Login>(`${this.url}auth/${credentials.userMail}/${credentials.userPassword}`);
   }
 
-logout() : void {
-this.userId = null
-}
+  logout(): void {
+    this.userId = null
+  }
 
 }

@@ -15,10 +15,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LogOutComponent } from './components/log-out/log-out.component';
-import { AuthGardComponent } from './components/auth-gard/auth-gard.component';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -33,9 +31,7 @@ import { ModalComponent } from './components/modal/modal.component';
     TransactionComponent,
     LoginComponent,
     HomeComponent,
-    LogOutComponent,
-    AuthGardComponent,
-    ModalComponent,
+    LogOutComponent
   ],
   imports: [
     BrowserModule,
